@@ -13,4 +13,5 @@ urlpatterns = [
          ProfileUpdateView.as_view()), name='profile'),
     path('profile/address', login_required(  # TODO move to coreapp?
          AddressView.as_view()), name='user-address'),
+           path("password-reset", password_reset_request, name="password-reset")
 ]
