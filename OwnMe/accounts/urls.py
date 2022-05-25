@@ -6,6 +6,7 @@ from .views import (login, register, logout,
 
 urlpatterns = [
     path('login', login, name='login'),
+    path('register', register, name='register'),
     path('logout', logout, name='logout'),
     path('dashboard', dashboard, name='dashboard'),
     path('profile/<int:pk>', login_required(

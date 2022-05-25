@@ -10,6 +10,46 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+def register(request):
+    """Register new user function"""
+    context = {
+        'title': _("Register"),
+        'page_title': _("Register Account"),
+        'page_description': _("Real estate manager. "
+                              "This is the regitration page."),
+    }
+
+    if request.method == 'POST':
+        # Get form values
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+
+        # Check if passwords match
+        if password == password2:
+            # Check email
+            if User.objects.filter(email=email).exists():
+                messages.error(request, _("That email is being used"))
+                return redirect('register')
+            else:
+                # if everything looks good
+                user = User.objects.create_user(
+                    password=password, email=email, is_active=True,
+                    first_name=first_name, last_name=last_name)
+                user.save()
+                messages.success(
+                    request, _("You are now registered and can log in"))
+                return redirect('login')
+        else:
+            messages.error(request, _("Passwords do not match"))
+            return redirect('register')
+    else:
+        return render(request, 'accounts/auth/register.html', context)
+
+
+
 
 def login(request):
     """Login user function"""
