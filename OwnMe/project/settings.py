@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
+    'crispy_forms',
+    'django.contrib.sites',
+    'allauth',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,4 +122,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+   BASE_DIR / 'project/static',
+]
+
+print(BASE_DIR / 'project/static')
+# Media Folder Settings
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
