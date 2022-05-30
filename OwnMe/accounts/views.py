@@ -93,3 +93,31 @@ def logout(request):
         return redirect('index')
 
 
+class ProfileUpdateView(SuccessMessageMixin, UpdateView):
+    model = CustomUser
+    form_class = ProfileUpdateForm
+    template_name = 'accounts/profile.html'
+    success_message = _("Profile updated successfully!")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # request.path replacement
+        context['profile'] = True
+        # Showcase Section Infos
+        context['title'] = _("Manage Account")
+        context['subtitle'] = _("Manage your Real-Estate account")
+        # SEO
+        context['page_title'] = _("Impressum")
+        context['page_description'] = _("Real estate manager."
+                                        "This is our impressum page.")
+
+        return context
+
+
+class AddressView(TemplateView):
+    template_name = 'accounts/address.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['address'] = True
+        return context

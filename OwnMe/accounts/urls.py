@@ -8,5 +8,8 @@ urlpatterns = [
     path('login', login, name='login'),
     path('register', register, name='register'),
     path('logout', logout, name='logout'),
-    
+    path('profile/<int:pk>', login_required(
+         ProfileUpdateView.as_view()), name='profile'),
+    path('profile/address', login_required(  # TODO move to coreapp?
+         AddressView.as_view()), name='user-address'),
 ]
