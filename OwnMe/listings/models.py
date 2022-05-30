@@ -15,6 +15,36 @@ def listing_dir_path(instance, filename):
         filename = '{}.{}'.format(uuid4().hex, ext)
     return (f'listings/{filename}') 
 
+class AddListing(models.Model):
+        listing_type = models.CharField('types', null=True, blank=False, max_length=1, choices = LISTING_TYPE)
+        name = models.CharField('Listings Name', null=True, blank=False, max_length=120)
+        price=models.DecimalField(max_digits=20, decimal_places=2,
+                                verbose_name=_("Price"))
+        bedroom = models.IntegerField(default=0, blank=False,
+                                 verbose_name=_("Bedroom"))
+        bathroom = models.IntegerField(default=0, blank=False,
+                                 verbose_name=_("Bathroom"))
+        kitchen = models.IntegerField(default=0, blank=False,
+                                 verbose_name=_("Kitchen")) 
+        description=models.CharField("Descriptions", blank=False, max_length=250)    
+        condition= models.CharField('Condition',null=True, max_length=1, choices=CONDITION_CHOICES)
+        phone = models.CharField('Contact Phone',null=True, max_length=25, blank=False)
+        email = models.CharField('Email Address', max_length=50, null=True)
+        owner = models.CharField("Listing Owner", max_length=200, blank=False,)
+        listing_image_first = models.ImageField(null=True, blank=True, upload_to="images/")
+        listing_image_second = models.ImageField(null=True, blank=True, upload_to="images/")
+        listing_image_third = models.ImageField(null=True, blank=True, upload_to="images/")
+        owner_docs_first= models.ImageField(null=True, blank=True, upload_to="images/")
+        owner_docs_second= models.ImageField(null=True, blank=True, upload_to="images/")
+        owner_docs_third= models.ImageField(null=True, blank=True, upload_to="images/")
+        location = models.CharField("Locations", null=True, max_length=250)
+        
+        
+        
+        def __str__(self):
+            return self.name
+ 
+
 
 # ============================================================= >> LISTING TYPE
 

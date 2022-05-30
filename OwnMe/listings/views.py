@@ -7,8 +7,26 @@ from decimal import Decimal
 from django.utils.html import format_html
 from .models import Listing
 from core.models import State
+from .models import AddListing
+from .forms import AddListingForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
+def add_listing(request):
+    submitted=False
+    if request.method=="POST":
+       form=AddListingForm(request.POST, request.FILES)
+       if form.is_valid():
+        # addlisting=form.save(commit=False)
+        # addlisting.owner=request.user.id
+        form.save()
+        messages.success(request, _("Your listing has been saved to our database, we will verify and list your listing!!"))
+        return redirect('dashboard')
+    else:    
+       form=AddListingForm
+       if 'submitted' in request.GET:
+           submitted=True
+    return render(request, 'listings/addlistings.html', {'form':form, 'submitted':submitted})
 
 
 

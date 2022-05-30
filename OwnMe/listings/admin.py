@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.admin.widgets import AdminFileWidget
 from .models import (Listing, ListingImage, ListingType)
 from documents.admin import (InlineListingFileAdmin)
+from .models import AddListing
 
 
 
@@ -61,4 +62,10 @@ class ListingImageAdmin(admin.ModelAdmin):
     list_editable = ('short_description',)
     readonly_fields = ('headshot_image', 'created')
     list_display = ('get_listing_title', 'short_description', 'get_image')
+
+@admin.register(AddListing)
+class Listing(admin.ModelAdmin):
+	list_display = ('listing_type','name', 'price','bedroom', 'bathroom', 'kitchen', 'description','condition','owner', 'owner_docs_first','owner_docs_second','owner_docs_third', 'email', 'location','phone', 'listing_image_first','listing_image_second', 'listing_image_third')
+    # ordering = ('name')
+    # search_fields = ('name', 'location')
 

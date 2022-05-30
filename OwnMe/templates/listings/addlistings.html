@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load filters %}
+
+{% load humanize %}
+
+{% block content %}
+
+
+{% include 'core/partials/_showcase_section.html' %}
+
+{% if user.is_authenticated %}
+	<center>
+	<h1>List Your House/Property</h1>
+	<br/><br/>
+	{% if submitted %}
+		Your listings has been Submitted in our database, we will verify and list on our webistite!!!
+
+	{% else %}
+
+		<form action="" method=POST enctype="multipart/form-data">
+			{% csrf_token %}
+
+			{{ form.as_p }}
+
+			<input type="submit" value="Submit" class="btn btn-secondary">
+
+		</form>
+	{% endif %}
+	</center>
+{% else %}
+	<h1>Sorry! You Must Be Logged In To View This Page...</h1>
+
+	<a href="{% url 'login' %}">Login Here</a>
+{% endif %}
+
+{% endblock %}
+
+
