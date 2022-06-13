@@ -13,3 +13,10 @@ class CustomUserAdmin(admin.ModelAdmin):
                     'is_superuser', 'is_active', 'get_groups', 'last_login')
 
 
+@admin.register(Realtor)
+class RealtorAdmin(admin.ModelAdmin):
+    autocomplete_fields = ('user',)
+    list_display = ('user', 'email', 'phone', 'description',
+                    'is_mvp')
+    list_display_links = ('user',)
+    search_fields = ('user__first_name', 'user__last_name', 'email')
