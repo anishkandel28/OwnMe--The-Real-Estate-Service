@@ -98,12 +98,18 @@ GOOGLE_MAPS_API_KEY='AIzaSyDxWw4VcFePOMBkPggCB7H8sXvbY5j-JqY'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+     'default': {
+         'ENGINE':'django.db.backends.postgresql',
+         'NAME':'Ownme',
+         'USER':'postgres',
+         'PASSWORD':'1234',
+         'HOST':'localhost', 
+         'PORT':'',
+     }}
+
 
 
 # Password validation
