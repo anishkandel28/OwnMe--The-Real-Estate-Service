@@ -7,6 +7,7 @@ from .views import (login, register, logout,
 urlpatterns = [
     path('login', login, name='login'),
     path('logout', logout, name='logout'),
+    path('dashboard', dashboard, name='dashboard'),
     path('profile/<int:pk>', login_required(
          ProfileUpdateView.as_view()), name='profile'),
     path('profile/address', login_required(  # TODO move to coreapp?
