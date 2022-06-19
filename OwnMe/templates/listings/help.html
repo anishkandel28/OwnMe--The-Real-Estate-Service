@@ -1,0 +1,143 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load filters %}
+
+{% load humanize %}
+
+{% block content %}
+
+
+{% include 'core/partials/_showcase_section.html' %}
+<div class="containerd">
+    <h1> Form Submission</h1>
+    <form action="https://formsubmit.co/6dbcab56536896a9ade190f83c293050" method="POST" id="my-form">
+
+      <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input type="text" id="firstName" name="firstName">
+      </div>
+
+      <div class="form-group">
+        <label for="latsName">Last Name</label>
+        <input type="text" id="lastName" name="lastName">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+      </div>
+
+      <div class="form-group">
+        <label for="latsName">Age</label>
+        <input type="text" id="age" name="age">
+      </div>
+
+      <div class="form-group">
+        <label for="latsName">Weight</label>
+        <input type="text" id="weight" name="weight">
+      </div>
+      <div class="form-group">
+        <label for="latsName">Height</label>
+        <input type="text" id="height" name="height">
+      </div>
+      <div class="form-group">
+        <label for="latsName">Goals</label>
+        <input type="text" id="goals" name="goals" placeholder="weight gain or weight loss">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Description</label>
+        <textarea name="message" id="message" cols="30" rows="10" placeholder="Describe your problem"></textarea>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+    <div id="status"></div>
+  </div>
+ 
+  
+  
+
+
+  <!-- end of form -->
+
+  <!-- Contact section -->
+
+    <div class="contact-form contain">
+        <div class="contact-item">
+          <div class="contact-infos">
+
+           <div class="icons">
+              <a href="https://www.facebook.com/Get_fit_with_dresty-105498628692412"><img class="space"
+                  src="https://img.icons8.com/color/48/fa314a/facebook-new.png" /> </a>
+
+              <a href="https://instagram.com/drishti_sindhi?utm_medium=copy_link"><img class="space"
+                  src="https://img.icons8.com/color/48/fa314a/instagram-new--v1.png" /></a>
+
+              <a href="https://www.tiktok.com/@getfitwith_dresty?lang=en"><img class="space"
+                  src="https://img.icons8.com/ios-filled/50/000000/tiktok--v1.png" /></a>
+
+
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  
+
+  <!-- End of Contact section -->
+
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+  // get the form elements defined in your form HTML above
+
+  var form = document.getElementById("my-form");
+  // var button = document.getElementById("my-form-button");
+  var status = document.getElementById("status");
+
+  // Success and Error functions for after the form is submitted
+
+  function success() {
+    form.reset();
+    status.classList.add("success");
+    status.innerHTML = "Thanks!";
+  }
+
+  function error() {
+    status.classList.add("error");
+    status.innerHTML = "Oops! There was a problem.";
+  }
+
+  // handle the form submission event
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var data = new FormData(form);
+    ajax(form.method, form.action, data, success, error);
+  });
+});
+
+// helper function for sending an AJAX request
+
+function ajax(method, url, data, success, error) {
+  var xhr = new XMLHttpRequest();
+  xhr.open(method, url);
+  xhr.setRequestHeader("Accept", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState !== XMLHttpRequest.DONE) return;
+    if (xhr.status === 200) {
+      success(xhr.response, xhr.responseType);
+    } else {
+      error(xhr.status, xhr.response, xhr.responseType);
+    }
+  };
+  xhr.send(data);
+}
+
+</script>
+
