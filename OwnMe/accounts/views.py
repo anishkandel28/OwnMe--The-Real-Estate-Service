@@ -1,12 +1,23 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages, auth
 from django.views.generic import (UpdateView, TemplateView)
+from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext_lazy as _
+from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+from django.contrib.auth.forms import PasswordResetForm
+# from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+
 from .forms import ProfileUpdateForm
 from .models import CustomUser
+from contacts.models import Contact
 
 from django.contrib.auth import get_user_model
-
 
 User = get_user_model()
 
@@ -141,6 +152,14 @@ class ProfileUpdateView(SuccessMessageMixin, UpdateView):
                                         "This is our impressum page.")
 
         return context
+
+class AddressView(TemplateView):
+    template_name = 'accounts/address.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['address'] = True
+        return context        
 
 
 # TODO convert to class based view
