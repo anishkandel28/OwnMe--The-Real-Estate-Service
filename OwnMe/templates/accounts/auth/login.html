@@ -19,7 +19,7 @@
             
           </div>
           <div class="card-body bg-light">
-            <!-- Alerts -->
+            <!-- Alerts is added for unvalid user -->
             {% include 'core/partials/_alerts.html' %}
             <form action="{% url 'login' %}" method="POST">
               {% csrf_token %}
