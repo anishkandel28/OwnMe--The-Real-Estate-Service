@@ -35,16 +35,18 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig',
+    'django.contrib.humanize',
+    'core.apps.CoreConfig',
     'listings.apps.ListingsConfig',
+    'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
     'crispy_forms',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

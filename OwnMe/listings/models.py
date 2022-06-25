@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import datetime, date
 from django.utils.translation import gettext_lazy as _
 from uuid import uuid4
 from core.libs.core_libs import (get_headshot_image, get_image_format,
