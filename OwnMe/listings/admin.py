@@ -53,6 +53,15 @@ class ListingAdmin(admin.ModelAdmin):
     list_per_page = 25
     save_as = True
 
+@admin.register(ListingType)
+class ListingTypeAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+    list_display = ('id', 'name')
+    list_editable = ('name',)
+    actions = [set_online, set_offline]
+    readonly_fields = ('created', 'updated')
+
+
 
 @admin.register(ListingImage)
 class ListingImageAdmin(admin.ModelAdmin):

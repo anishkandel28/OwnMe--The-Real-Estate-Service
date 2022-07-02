@@ -47,6 +47,39 @@ class AddListing(models.Model):
 
 
 # ============================================================= >> LISTING TYPE
+class ListingType(models.Model):
+    """ListingTypes designate basic appartment, maisonette, loft, houses, etc.
+    """
+
+    name = models.CharField(max_length=100, blank=False, null=False,
+                            unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    def get_nr_listings(self):
+        return 5
+
+
+LISTING_CHOICE = {
+    (_("R"), _("Rent")),
+    (_("S"), _("Sell")),
+}
+
+LISTING_TYPE=( 
+    ("1", "House"), 
+    ("2", "Land"), 
+    ("3", "Apartment"), 
+
+) 
+
+CONDITION_CHOICES=[
+    ('1', 'Used'),
+    ('2', 'New'),
+   
+    ]
 
 # userproductlistings section
 
