@@ -234,8 +234,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
+
+
+def gettext(s): return s
+LANGUAGES = (
+    ('ne', gettext('Nepali')),
+    ('en', gettext('English')),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+
+LANGUAGE_CODE = 'en'
+
 
 TIME_ZONE = 'Europe/Berlin'
 
