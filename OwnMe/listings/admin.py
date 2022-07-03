@@ -32,6 +32,9 @@ class AdminImageWidget(AdminFileWidget):
         output.append(super(AdminFileWidget, self).render(name, value, attrs))
         return format_html(u''.join(output))
 
+class ListingImageAdmin(admin.StackedInline):
+    model = ListingImage
+    formfield_overrides = {models.ImageField: {'widget': AdminImageWidget}}
 
 @admin.register(Listing)
 class ListingAdmin(admin.ModelAdmin):
