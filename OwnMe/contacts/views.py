@@ -3,7 +3,7 @@ from django.contrib import messages
 from .models import Contact, ChatMessage
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
-##
+from django.core.paginator import Paginator
 from django.views.generic import (DetailView, TemplateView)
 from listings.models import Listing
 
