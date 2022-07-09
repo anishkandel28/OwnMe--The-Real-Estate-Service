@@ -36,12 +36,12 @@ class Contact(models.Model):
     
 class ChatMessage(models.Model):
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT,
-                                verbose_name=_("Contact listing"))
+                                verbose_name=_("Contact listings"))
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.PROTECT, verbose_name=_("User"))
     message = models.TextField(null=True, blank=False)
     timestamp = models.DateTimeField(default=datetime.now, blank=True,
-                                     verbose_name=_("Date and iime"))
+                                     verbose_name=_("Date and time"))
 
     class Meta:
         ordering = ['-timestamp']

@@ -2,8 +2,6 @@ from django.contrib import admin
 from crum import get_current_user
 
 from .models import Contact, ChatMessage
-
-
 class InlineChatMessageAdmin(admin.StackedInline):
     model = ChatMessage
 
