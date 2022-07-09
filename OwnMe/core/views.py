@@ -44,8 +44,25 @@ class IndexView(TemplateView):
                                         " offered: renting, selling, buying,"
                                         " consultation and way more.")
         return context
+    
 
+class AboutView(TemplateView):
+    template_name = 'core/about.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['realtors'] = Realtor.objects.order_by('-hire_date')
+        # Showcase Section Infos
+        context['title'] = _("About us")
+        context['subtitle'] = _("Real Estate and Consulting")
+        # SEO
+        context['page_title'] = _("About Us")
+        context['page_description'] = _("Real estate manager."
+                                        "Our services include "
+                                        "renting, selling, buying, consulting "
+                                        "and much more.")
+        return context
+    
 
 class PrivacyView(TemplateView):
     template_name = 'core/privacy.html'
@@ -76,3 +93,5 @@ class ImpressumView(TemplateView):
                                         "This is our impressum page.")
         return context
 
+class RobotsTXTView(TemplateView):
+    template_name = 'core/robots.txt'

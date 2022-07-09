@@ -31,6 +31,21 @@ def user_contact(request):
                           user_id=user_id)
 
         contact.save()
+        
+        
+         # Send email
+        send_mail(f'Property Listing Inquiry',
+                  f'There has been an inquiry for '
+                  f'{Listing.objects.get(id=listing_id)}'
+                  f'. Sign into the admin panel for more info',
+                  'schonefeld.dev@gmail.com',
+                  [realtor_email, 'schonefeld.dev@gmail.com'],
+                  fail_silently=False)
+
+        messages.success(
+            request, (_("Your request has been submitted, a realtor will "
+                        "get back to you soon")))
+        return redirect('/listings/' + listing_id)
 
 
 def anonymous_contact(request):
@@ -58,6 +73,21 @@ def anonymous_contact(request):
                           user_id=user_id)
 
         contact.save()
+        
+        
+        # Send email
+        send_mail('Property Listing Inquiry',
+                  'There has been an inquiry for '
+                  + Listing.object.get(id=listing_id)
+                  + '. Sign into the admin panel for more info',
+                  'schonefeld.dev@gmail.com',
+                  [realtor_email, 'schonefeld.dev@gmail.com'],
+                  fail_silently=False)
+
+        messages.success(
+            request, (_("Your request has been submitted, a realtor will "
+                        "get back to you soon")))
+        return redirect('/listings/' + listing_id)
 
 @login_required
 def chat_message(request):
