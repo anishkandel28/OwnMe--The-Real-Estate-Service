@@ -133,6 +133,8 @@ LOGGING = {
 # Application definition
 
 INSTALLED_APPS = [
+    'django_translation_flags',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
